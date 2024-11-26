@@ -284,7 +284,7 @@ class OpenAIAgent(conversation.AbstractConversationAgent):
                     "name": state.name,
                     "state": self.hass.states.get(entity_id).state,
                     "aliases": aliases,
-                    "attributes": state.attributes
+                    "attributes": str(state.attributes)
                 }
             )
         return exposed_entities
