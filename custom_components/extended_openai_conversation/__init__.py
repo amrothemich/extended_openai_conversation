@@ -267,6 +267,9 @@ class OpenAIAgent(conversation.AbstractConversationAgent):
         ]
         entity_registry = er.async_get(self.hass)
         exposed_entities = []
+        
+        fields_to_expose = []
+        
         for state in states:
             entity_id = state.entity_id
             entity = entity_registry.async_get(entity_id)
@@ -281,6 +284,7 @@ class OpenAIAgent(conversation.AbstractConversationAgent):
                     "name": state.name,
                     "state": self.hass.states.get(entity_id).state,
                     "aliases": aliases,
+                    "attributes": state.attributes
                 }
             )
         return exposed_entities
